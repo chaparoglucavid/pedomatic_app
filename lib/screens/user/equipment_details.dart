@@ -26,7 +26,12 @@ class _EquipmentDetailsState extends State<EquipmentDetails> {
                           SizedBox(
                             height: 100,
                             width: 120,
-                            child: Image.asset('assets/images/categories/item1.png'),
+                            child: Image.asset('assets/images/categories/kotex.png'),
+                          ),
+                          SizedBox(
+                            height: 100,
+                            width: 120,
+                            child: Image.asset('assets/images/categories/molped.png'),
                           ),
                         ],
                       )

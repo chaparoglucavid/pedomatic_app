@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:pedomatic_app/screens/auth/login_screen.dart';
 import 'package:pedomatic_app/screens/user/home_screen.dart';
 
 class LoginButton extends StatelessWidget {

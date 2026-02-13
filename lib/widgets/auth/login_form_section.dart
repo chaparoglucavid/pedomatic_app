@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:pedomatic_app/screens/auth/login_screen.dart';
 import 'package:pedomatic_app/screens/auth/register_screen.dart';
 import 'package:pedomatic_app/widgets/buttons/login_button.dart';
-import 'package:pedomatic_app/widgets/buttons/register_button.dart';
 
 class LoginFormSection extends StatefulWidget {
   const LoginFormSection({super.key});

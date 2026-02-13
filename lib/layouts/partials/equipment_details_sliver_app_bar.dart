@@ -38,7 +38,7 @@ class _EquipmentDetailsSliverAppBarState extends State<EquipmentDetailsSliverApp
                 SizedBox(
                   height: 180,
                   width: 180,
-                  child: Image.asset('assets/images/equipment.png'),
+                  child: Image.asset('assets/images/pedomat.png'),
                 ),
                 SizedBox(height: 1,),
                 Text("Equipment #000001", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),

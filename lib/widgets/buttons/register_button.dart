@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:pedomatic_app/screens/auth/register_screen.dart';
 
 class RegisterButton extends StatelessWidget {
   const RegisterButton({super.key});

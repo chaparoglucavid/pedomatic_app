@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pedomatic_app/routeGenerator.dart';
 import 'package:pedomatic_app/screens/auth/login_screen.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       home: LoginScreen(),
+      onGenerateRoute: RouteGenerator.routeGenerator,
     );
   }
 }

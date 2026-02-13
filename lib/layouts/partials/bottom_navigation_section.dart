@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
 
 class BottomNavigationSection extends StatefulWidget {
   const BottomNavigationSection({super.key});
@@ -13,40 +12,26 @@ class _BottomNavigationSectionState extends State<BottomNavigationSection> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: Colors.redAccent,
       items: [
         BottomNavigationBarItem(
-            icon: HugeIcon(
-              icon: HugeIcons.strokeRoundedHome02,
-              color: Colors.pinkAccent,
-            ),
+            icon: Icon(Icons.home_filled, color: Colors.pinkAccent, size: 35,),
             label: ""
         ),
         BottomNavigationBarItem(
-            icon: HugeIcon(
-              icon: HugeIcons.strokeRoundedMapPin,
-              color: Colors.pinkAccent,
-            ),
+            icon: Icon(Icons.map_outlined, color: Colors.pinkAccent, size: 35,),
             label: ""
         ),
         BottomNavigationBarItem(
-            icon: HugeIcon(
-              icon: HugeIcons.strokeRoundedQrCode01,
-              color: Colors.pinkAccent,
-            ),
+            icon: Icon(Icons.qr_code, color: Colors.pinkAccent, size: 35,),
             label: ""
         ),
         BottomNavigationBarItem(
-            icon: HugeIcon(
-              icon: HugeIcons.strokeRoundedBubbleChatAdd,
-              color: Colors.pinkAccent,
-            ),
+            icon: Icon(Icons.forum, color: Colors.pinkAccent, size: 35,),
             label: ""
         ),
         BottomNavigationBarItem(
-            icon: HugeIcon(
-              icon: HugeIcons.strokeRoundedProfile,
-              color: Colors.pinkAccent,
-            ),
+            icon: Icon(Icons.account_circle, color: Colors.pinkAccent, size: 35,),
             label: ""
         ),
       ],

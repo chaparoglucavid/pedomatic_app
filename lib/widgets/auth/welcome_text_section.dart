@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pedomatic_app/widgets/auth/social_media_icons_section.dart';
 
 class WelcomeTextSection extends StatelessWidget {
   const WelcomeTextSection({super.key});
@@ -12,7 +11,7 @@ class WelcomeTextSection extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            "Pedomatic",
+            "Pedomat",
             style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w700,

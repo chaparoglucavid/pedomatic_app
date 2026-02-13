@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
 import 'package:pedomatic_app/layouts/partials/bottom_navigation_section.dart';
 
 class MasterLayout extends StatelessWidget {

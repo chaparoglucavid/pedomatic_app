@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pedomatic_app/screens/user/equipment_details.dart';
 
 class EquipmentCardElement extends StatelessWidget {
   const EquipmentCardElement({super.key});
@@ -8,7 +7,7 @@ class EquipmentCardElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => EquipmentDetails()));
+        Navigator.pushNamed(context, '/equipment-details');
       },
       child: Card(
         elevation: 4,
@@ -30,7 +29,7 @@ class EquipmentCardElement extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(8),
                 child: Image.asset(
-                  'assets/images/equipment.png',
+                  'assets/images/pedomat.png',
                   fit: BoxFit.contain,
                 ),
               ),
