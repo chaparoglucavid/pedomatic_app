@@ -78,8 +78,8 @@ class HomeSliverAppBar extends StatelessWidget {
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
+              // topLeft: Radius.circular(30),
+              // topRight: Radius.circular(30),
             ),
           ),
         ),

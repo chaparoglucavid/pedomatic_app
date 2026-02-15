@@ -8,48 +8,40 @@ class RegisterFormSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
           decoration: InputDecoration(
-            hintText: "Email",
-            suffixIcon: Transform.scale(
-              scale: 0.5,
-              child: HugeIcon(
-                icon: HugeIcons.strokeRoundedAiMail01,
-                color: Colors.pinkAccent,
-              ),
+            labelText: "Email",
+            prefixIcon: const Icon(Icons.email_outlined),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
             ),
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 12),
         TextField(
           obscureText: true,
           decoration: InputDecoration(
-            hintText: "Şifrə",
-            suffixIcon: Transform.scale(
-              scale: 0.5,
-              child: HugeIcon(
-                icon: HugeIcons.strokeRoundedSecurityLock,
-                color: Colors.pinkAccent,
-              ),
-            )
-          ),
-        ),
-        const SizedBox(height: 10),
-        TextField(
-          obscureText: true,
-          decoration: InputDecoration(
-            hintText: "Şifrəni təsdiqlə",
-            suffixIcon: Transform.scale(
-              scale: 0.5,
-              child: HugeIcon(
-                icon: HugeIcons.strokeRoundedSecurityLock,
-                color: Colors.pinkAccent,
-              ),
+            labelText: "Şifrə",
+            prefixIcon: const Icon(Icons.lock_outline),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
             ),
           ),
         ),
-        const SizedBox(height: 15),
+        const SizedBox(height: 12),
+        TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            labelText: "Şifrəni təsdiqlə",
+            prefixIcon: const Icon(Icons.lock_outline),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
+        const SizedBox(height: 16),
         RegisterButton(),
         const SizedBox(height: 10),
         TextButton(

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pedomatic_app/layouts/partials/bottom_navigation_section.dart';
 
 class MasterLayout extends StatelessWidget {
   final List<Widget> slivers;
@@ -12,7 +10,6 @@ class MasterLayout extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(slivers: slivers),
-      bottomNavigationBar: BottomNavigationSection(),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:pedomatic_app/screens/user/home_screen.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
@@ -16,7 +15,7 @@ class LoginButton extends StatelessWidget {
         foregroundColor: Colors.white,
       ),
       onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+        Navigator.pushReplacementNamed(context, '/home-screen');
       },
     );
   }

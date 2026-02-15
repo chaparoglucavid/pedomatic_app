@@ -10,15 +10,20 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-            child: Column(
-              children: const [
-                ImageSection(),
-                WelcomeTextSection(),
-                RegisterFormSection(),
-              ],
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  ImageSection(),
+                  SizedBox(height: 16),
+                  WelcomeTextSection(),
+                  SizedBox(height: 24),
+                  RegisterFormSection(),
+                ],
+              ),
             ),
           ),
         ),
