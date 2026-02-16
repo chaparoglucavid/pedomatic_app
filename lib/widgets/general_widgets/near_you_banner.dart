@@ -7,7 +7,7 @@ class NearYouBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 10),
         child: Container(
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.blue),

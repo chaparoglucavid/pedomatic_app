@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pedomatic_app/screens/auth/login_screen.dart';
+import 'package:pedomatic_app/screens/auth/step1_screen.dart';
 import 'package:pedomatic_app/screens/user/404_page_not_found.dart';
 import 'package:pedomatic_app/screens/user/equipment_details.dart';
 import 'package:pedomatic_app/screens/user/home_screen.dart';
@@ -14,7 +14,7 @@ class RouteGenerator {
   static Route<dynamic>? routeGenerator(RouteSettings settings) {
     switch(settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (context) => LoginScreen(),);
+        return MaterialPageRoute(builder: (context) => const Step1Screen(),);
 
       case '/home-screen':
         return MaterialPageRoute(builder: (context) => DashboardShell(),);

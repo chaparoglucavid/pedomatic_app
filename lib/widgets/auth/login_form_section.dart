@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
 import 'package:pedomatic_app/screens/auth/register_screen.dart';
 import 'package:pedomatic_app/widgets/buttons/login_button.dart';
 
@@ -11,45 +10,58 @@ class LoginFormSection extends StatefulWidget {
 }
 
 class _LoginFormSectionState extends State<LoginFormSection> {
+  InputDecoration _buildInputDecoration(String label, IconData icon) {
+    return InputDecoration(
+      labelText: label,
+      prefixIcon: Icon(icon, color: Colors.grey[600]),
+      filled: true,
+      fillColor: Colors.grey[100],
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide.none,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: const BorderSide(color: Colors.pinkAccent, width: 1.5),
+      ),
+      labelStyle: TextStyle(color: Colors.grey[600]),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
-          decoration: InputDecoration(
-            labelText: "Email",
-            prefixIcon: const Icon(Icons.email_outlined),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
+          decoration: _buildInputDecoration("Email", Icons.email_outlined),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 16),
         TextField(
           obscureText: true,
-          decoration: InputDecoration(
-            labelText: "Şifrə",
-            prefixIcon: const Icon(Icons.lock_outline),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
+          decoration: _buildInputDecoration("Şifrə", Icons.lock_outline),
         ),
         Align(
           alignment: Alignment.centerRight,
-          child: TextButton(onPressed: () {}, child: Text("Forget password")),
+          child: TextButton(
+            onPressed: () {},
+            child: const Text(
+              "Şifrəni unutmusunuz?",
+              style: TextStyle(
+                color: Colors.pinkAccent,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
         ),
-        const SizedBox(height: 5),
-        LoginButton(),
-        const SizedBox(height: 10),
-
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RegisterScreen()));
-          },
-          child: const Text("Hesabın yoxdur? Qeydiyyatdan keç", style: TextStyle(color: Colors.pinkAccent),),
-        ),
+        const SizedBox(height: 8),
+        const LoginButton(),
+        const SizedBox(height: 16),
       ],
     );
   }

@@ -1,35 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:pedomatic_app/layouts/master_layout.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
-class QrScreen extends StatelessWidget {
+class QrScreen extends StatefulWidget {
   const QrScreen({super.key});
+
+  @override
+  State<QrScreen> createState() => _QrScreenState();
+}
+
+class _QrScreenState extends State<QrScreen> {
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   @override
   Widget build(BuildContext context) {
     return MasterLayout(
       slivers: [
-        SliverAppBar(
+        const SliverAppBar(
           pinned: true,
-          title: const Text("QR skan"),
+          title: Text("QR Scan"),
         ),
-        const SliverToBoxAdapter(
-          child: SizedBox(height: 32),
-        ),
-        const SliverToBoxAdapter(
-          child: Center(
-            child: Icon(
-              Icons.qr_code_2,
-              size: 96,
-              color: Colors.grey,
-            ),
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              "Tezliklə: QR kodu skan edərək pedomatları daha sürətli aktiv edə biləcəksiniz.",
-              textAlign: TextAlign.center,
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 400,
+            child: MobileScanner(
+
             ),
           ),
         ),

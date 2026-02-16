@@ -1,9 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
 import 'package:pedomatic_app/widgets/buttons/register_button.dart';
 
 class RegisterFormSection extends StatelessWidget {
   const RegisterFormSection({super.key});
+
+  InputDecoration _buildInputDecoration(String label, IconData icon) {
+    return InputDecoration(
+      labelText: label,
+      prefixIcon: Icon(icon, color: Colors.grey[600]),
+      filled: true,
+      fillColor: Colors.grey[100],
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide.none,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: const BorderSide(color: Colors.pinkAccent, width: 1.5),
+      ),
+      labelStyle: TextStyle(color: Colors.grey[600]),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,45 +33,21 @@ class RegisterFormSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
-          decoration: InputDecoration(
-            labelText: "Email",
-            prefixIcon: const Icon(Icons.email_outlined),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-        ),
-        const SizedBox(height: 12),
-        TextField(
-          obscureText: true,
-          decoration: InputDecoration(
-            labelText: "Şifrə",
-            prefixIcon: const Icon(Icons.lock_outline),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-        ),
-        const SizedBox(height: 12),
-        TextField(
-          obscureText: true,
-          decoration: InputDecoration(
-            labelText: "Şifrəni təsdiqlə",
-            prefixIcon: const Icon(Icons.lock_outline),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
+          decoration: _buildInputDecoration("Email", Icons.email_outlined),
         ),
         const SizedBox(height: 16),
-        RegisterButton(),
-        const SizedBox(height: 10),
-        TextButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text("Hesabın var? Daxil ol", style: TextStyle(color: Colors.pinkAccent),),
+        TextField(
+          obscureText: true,
+          decoration: _buildInputDecoration("Şifrə", Icons.lock_outline),
         ),
+        const SizedBox(height: 16),
+        TextField(
+          obscureText: true,
+          decoration: _buildInputDecoration("Şifrəni təsdiqlə", Icons.lock_outline),
+        ),
+        const SizedBox(height: 24),
+        const RegisterButton(),
+        const SizedBox(height: 16),
       ],
     );
   }

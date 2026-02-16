@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pedomatic_app/routeGenerator.dart';
-import 'package:pedomatic_app/screens/auth/login_screen.dart';
+import 'package:pedomatic_app/screens/auth/step1_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: LoginScreen(),
+      home: const Step1Screen(),
       onGenerateRoute: RouteGenerator.routeGenerator,
     );
   }
