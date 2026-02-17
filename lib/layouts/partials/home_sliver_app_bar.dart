@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeSliverAppBar extends StatelessWidget {
   const HomeSliverAppBar({super.key});
@@ -11,16 +12,16 @@ class HomeSliverAppBar extends StatelessWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       flexibleSpace: FlexibleSpaceBar(
-        stretchModes: const [StretchMode.blurBackground, StretchMode.zoomBackground],
+        stretchModes: const [
+          StretchMode.blurBackground,
+          StretchMode.zoomBackground,
+        ],
         background: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [
-                Color(0xFF6200EE),
-                Colors.pinkAccent,
-              ],
+              colors: [Color(0xFF6200EE), Colors.pinkAccent],
             ),
           ),
           child: Padding(
@@ -36,10 +37,15 @@ class HomeSliverAppBar extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(
+                          height: 80,
+                          width: 50,
+                          child: Lottie.asset('assets/animations/owl2.json'),
+                        ),
                         Text(
                           "Xoş gəldin,",
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.8),
+                            color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold
                           ),
@@ -60,7 +66,10 @@ class HomeSliverAppBar extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: IconButton(
-                        icon: const Icon(Icons.notifications_none, color: Colors.white),
+                        icon: const Icon(
+                          Icons.notifications_none,
+                          color: Colors.white,
+                        ),
                         onPressed: () {},
                       ),
                     ),
