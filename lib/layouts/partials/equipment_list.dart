@@ -14,6 +14,7 @@ class _EquipmentListState extends State<EquipmentList> {
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
+
           (context, index) => EquipmentCardElement(),
           childCount: 10
       ),

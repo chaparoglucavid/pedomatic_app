@@ -84,13 +84,6 @@ class _PackageCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        boxShadow: [
-          BoxShadow(
-            color: p.color.withOpacity(0.25),
-            blurRadius: 22,
-            offset: const Offset(0, 10),
-          )
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,7 +152,7 @@ class _PackageCard extends StatelessWidget {
               onPressed: () {},
               child: const Text(
                 "Abunə ol",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
           ),

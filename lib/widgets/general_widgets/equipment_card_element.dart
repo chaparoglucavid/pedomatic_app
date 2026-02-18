@@ -10,6 +10,7 @@ class EquipmentCardElement extends StatelessWidget {
         Navigator.pushNamed(context, '/equipment-details');
       },
       child: Card(
+        color: Colors.white,
         elevation: 4,
         shadowColor: Colors.pinkAccent.withOpacity(0.2),
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -48,17 +49,19 @@ class EquipmentCardElement extends StatelessWidget {
                         Text(
                           "Equipment",
                           style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black87),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
                         ),
                         SizedBox(width: 6),
                         Text(
                           "#12345",
                           style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey,
+                          ),
                         ),
                       ],
                     ),
@@ -67,7 +70,10 @@ class EquipmentCardElement extends StatelessWidget {
                     // Address
                     Text(
                       "Equipment address will be in there",
-                      style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey.shade600,
+                      ),
                     ),
                     const SizedBox(height: 12),
 
@@ -77,7 +83,9 @@ class EquipmentCardElement extends StatelessWidget {
                         // Status
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.green.shade100,
                             borderRadius: BorderRadius.circular(12),
@@ -89,8 +97,10 @@ class EquipmentCardElement extends StatelessWidget {
                               Text(
                                 "Active",
                                 style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.bold),
-                              )
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -99,21 +109,56 @@ class EquipmentCardElement extends StatelessWidget {
                         // Ped
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.grey.shade100,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
                             children: const [
-                              Icon(Icons.perm_device_info,
-                                  size: 16, color: Colors.pinkAccent),
+                              Icon(
+                                Icons.perm_device_info,
+                                size: 16,
+                                color: Colors.pinkAccent,
+                              ),
                               SizedBox(width: 4),
                               Text(
                                 "120",
                                 style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.bold),
-                              )
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.directions_walk,
+                                size: 16,
+                                color: Colors.deepPurpleAccent,
+                              ),
+                              SizedBox(width: 4),
+                              Text(
+                                "1km",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -121,21 +166,29 @@ class EquipmentCardElement extends StatelessWidget {
 
                         // Battery
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.grey.shade100,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
                             children: const [
-                              Icon(Icons.battery_full,
-                                  size: 16, color: Colors.orange),
+                              Icon(
+                                Icons.battery_full,
+                                size: 16,
+                                color: Colors.orange,
+                              ),
                               SizedBox(width: 4),
                               Text(
                                 "85%",
                                 style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.bold),
-                              )
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ],
                           ),
                         ),

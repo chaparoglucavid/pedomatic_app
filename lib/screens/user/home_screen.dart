@@ -71,7 +71,35 @@ class HomeScreen extends StatelessWidget {
           StepsAndEnergySection(),
 
           HomePageAdsBanner(),
+
           UserPackages(),
+
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 20, 16, 4),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Pedomatlar",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    "Cihazlar ərazi üzrə sıralanıb.",
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          EquipmentList()
         ],
     );
   }
