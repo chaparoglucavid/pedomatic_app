@@ -14,8 +14,8 @@ class HomePageAdsBanner extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color(0xFFFF4FA3),
-                Color(0xFF8A2BE2),
+                Colors.deepPurpleAccent.shade100,
+                Colors.deepPurple,
               ],
             ),
             borderRadius: BorderRadius.circular(20),

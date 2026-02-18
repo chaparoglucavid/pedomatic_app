@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:lottie/lottie.dart';
 
 class HomeSliverAppBar extends StatelessWidget {
@@ -7,90 +8,79 @@ class HomeSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      pinned: false,
-      expandedHeight: 200.0,
+      pinned: true,
+      expandedHeight: 150,
       backgroundColor: Colors.white,
-      elevation: 0,
+      elevation: 4,
       flexibleSpace: FlexibleSpaceBar(
-        stretchModes: const [
-          StretchMode.blurBackground,
-          StretchMode.zoomBackground,
-        ],
-        background: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Color(0xFF6200EE), Colors.pinkAccent],
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 80,
-                          width: 50,
-                          child: Lottie.asset('assets/animations/owl2.json'),
-                        ),
-                        Text(
-                          "Xoş gəldin,",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        const Text(
-                          "İstifadəçi Adı",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.notifications_none,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ],
+        stretchModes: [StretchMode.blurBackground, StretchMode.zoomBackground],
+        background: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset('assets/images/profile_bg.png', fit: BoxFit.cover),
+
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.transparent, Colors.black.withOpacity(0.4)],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(20),
-        child: Container(
-          height: 20,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              // topLeft: Radius.circular(30),
-              // topRight: Radius.circular(30),
+
+            Positioned(
+              bottom: 20,
+              right: 20,
+              left: 20,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        height: 60,
+                        width: 60,
+                        child: Lottie.asset('assets/animations/owl.json'),
+                      ),
+                      SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Xoş gəldiniz,",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            "Adelina",
+                            style: TextStyle(fontSize: 14, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.notifications_none,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

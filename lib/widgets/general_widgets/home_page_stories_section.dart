@@ -42,9 +42,9 @@ class _HomePageStoriesSectionState extends State<HomePageStoriesSection> {
     return SliverToBoxAdapter(
 
       child: SizedBox(
-        height: 130,
+        height: 165,
         child: ListView.separated(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           scrollDirection: Axis.horizontal,
           itemCount: stories.length,
           separatorBuilder: (_, __) => const SizedBox(width: 12),

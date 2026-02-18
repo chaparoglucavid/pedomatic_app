@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:pedomatic_app/layouts/master_layout.dart';
+import 'package:pedomatic_app/layouts/partials/profile_app_bar.dart';
+import 'package:pedomatic_app/widgets/buttons/balance_history_button.dart';
+import 'package:pedomatic_app/widgets/buttons/logout_button.dart';
+import 'package:pedomatic_app/widgets/buttons/order_history_button.dart';
+import 'package:pedomatic_app/widgets/buttons/profile_settings_button.dart';
+import 'package:pedomatic_app/widgets/buttons/support_contact_button.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -14,188 +20,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return MasterLayout(
       slivers: [
-        SliverAppBar(pinned: true, title: const Text("Profil")),
+        ProfileAppBar(),
         const SliverToBoxAdapter(child: SizedBox(height: 24)),
-        SliverToBoxAdapter(
+        ProfileSettingsButton(),
+        OrderHistoryButton(),
+        BalanceHistoryButton(),
+        SupportContactButton(),
+        SliverFillRemaining(
+          hasScrollBody: false,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                const CircleAvatar(
-                  radius: 36,
-                  child: Icon(Icons.person, size: 40),
-                ),
-                const SizedBox(height: 12),
-                const Text(
-                  "İstifadəçi Adı",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "user@example.com",
-                  style: TextStyle(color: Colors.grey.shade600),
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(4),
-                        child: Card(
-                          elevation: 6,
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.orange.shade100,
-                                  child: HugeIcon(
-                                    icon: HugeIcons.strokeRoundedShoppingBag01,
-                                    color: Colors.deepOrange,
-                                  ),
-                                ),
-                                SizedBox(width: 15),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "55",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 22,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Ümumi sifariş",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.blueGrey,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 20),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(4),
-                        child: Card(
-                          elevation: 6,
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.blue.shade100,
-                                  child: HugeIcon(
-                                    icon: HugeIcons.strokeRoundedHeartCheck,
-                                    color: Colors.purple,
-                                  ),
-                                ),
-                                SizedBox(width: 15),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "55",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 22,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Ümumi sifariş",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.blueGrey,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(4),
-                        child: Card(
-                          elevation: 6,
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.orange.shade100,
-                                  child: HugeIcon(icon: HugeIcons.strokeRoundedShoppingBag01, color: Colors.deepOrange),
-                                ),
-                                SizedBox(width: 15,),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("55", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 22),),
-                                    Text("Ümumi sifariş", style: TextStyle(fontSize: 14, color: Colors.blueGrey, fontWeight: FontWeight.bold),),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 20),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(4),
-                        child: Card(
-                          elevation: 6,
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: Colors.blue.shade100,
-                                  child: HugeIcon(icon: HugeIcons.strokeRoundedHeartCheck, color: Colors.purple,),
-                                ),
-                                SizedBox(width: 15,),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("55", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 22),),
-                                    Text("Ümumi sifariş", style: TextStyle(fontSize: 14, color: Colors.blueGrey, fontWeight: FontWeight.bold),),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+            padding: const EdgeInsets.all(16),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: LogoutButton(),
             ),
           ),
         ),

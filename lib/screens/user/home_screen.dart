@@ -23,34 +23,26 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Pedomat nədir?",
+                    "Sənin üçün tövsiyələr",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 2),
                   Text(
-                    "Şəhərdə yerləşən pedomatlar vasitəsilə məhsulları avtomatdan, anonim və rahat şəkildə əldə edə bilərsiniz.",
+                    "Məqalə və kampaniyalar ilə məlumatlan.",
                     style: TextStyle(
                       fontSize: 13,
-                      color: Colors.grey.shade700,
-                      height: 1.4,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    "Tətbiq isə sənə ən yaxın cihazları tapmaq, istifadə tarixçəni izləmək və xüsusi kampaniyalardan yararlanmaq üçün nəzərdə tutulub.",
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey.shade700,
-                      height: 1.4,
+                      color: Colors.grey.shade600,
                     ),
                   ),
                 ],
               ),
             ),
           ),
+          HomePageStoriesSection(),
+          NearYouBanner(),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
@@ -77,35 +69,9 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           StepsAndEnergySection(),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Sənin üçün tövsiyələr",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    "Məqalə və kampaniyalar ilə məlumatlan.",
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey.shade600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          HomePageStoriesSection(),
+
           HomePageAdsBanner(),
           UserPackages(),
-          NearYouBanner(),
         ],
     );
   }
