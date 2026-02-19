@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pedomatic_app/layouts/master_layout.dart';
+import 'package:pedomatic_app/layouts/partials/forum_list.dart';
+import 'package:pedomatic_app/layouts/partials/forum_sliver_app_bar.dart';
+import 'package:pedomatic_app/widgets/general_widgets/forum_add_button.dart';
 
 class ForumScreen extends StatefulWidget {
   const ForumScreen({super.key});
@@ -13,22 +16,9 @@ class _ForumScreenState extends State<ForumScreen> {
   Widget build(BuildContext context) {
     return MasterLayout(
       slivers: [
-        SliverAppBar(
-          pinned: true,
-          title: const Text("Forum"),
-        ),
-        const SliverToBoxAdapter(
-          child: SizedBox(height: 24),
-        ),
-        const SliverToBoxAdapter(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              "Tezliklə: Suallarınızı bölüşə və digər istifadəçilərlə müzakirə apara biləcəksiniz.",
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
+        ForumSliverAppBar(),
+        ForumAddButton(),
+        ForumList()
       ],
     );
   }

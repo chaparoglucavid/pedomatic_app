@@ -6,6 +6,7 @@ import 'package:pedomatic_app/widgets/buttons/balance_history_button.dart';
 import 'package:pedomatic_app/widgets/buttons/logout_button.dart';
 import 'package:pedomatic_app/widgets/buttons/order_history_button.dart';
 import 'package:pedomatic_app/widgets/buttons/profile_settings_button.dart';
+import 'package:pedomatic_app/widgets/buttons/profile_subscriptions_button.dart';
 import 'package:pedomatic_app/widgets/buttons/support_contact_button.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       slivers: [
         ProfileAppBar(),
         const SliverToBoxAdapter(child: SizedBox(height: 24)),
+        ProfileSubscriptionsButton(),
         ProfileSettingsButton(),
         OrderHistoryButton(),
         BalanceHistoryButton(),

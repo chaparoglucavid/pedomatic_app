@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class HomeSliverAppBar extends StatelessWidget {
-  const HomeSliverAppBar({super.key});
+class ForumSliverAppBar extends StatelessWidget {
+  const ForumSliverAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class HomeSliverAppBar extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Xoş gəldiniz,",
+                            "Forum",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -56,7 +56,7 @@ class HomeSliverAppBar extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Adelina",
+                            "Fikirlərinizi bölüşün, məsləhət alın",
                             style: TextStyle(fontSize: 14, color: Colors.white),
                           ),
                         ],
