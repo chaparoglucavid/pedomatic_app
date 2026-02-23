@@ -6,7 +6,8 @@ import 'package:pedomatic_app/screens/user/equipment_details.dart';
 import 'package:pedomatic_app/screens/user/home_screen.dart';
 import 'package:pedomatic_app/screens/user/map_screen.dart';
 import 'package:pedomatic_app/screens/user/forum_screen.dart';
-import 'package:pedomatic_app/screens/user/profile_screen.dart';
+import 'package:pedomatic_app/screens/user/profile/profile_screen.dart';
+import 'package:pedomatic_app/screens/user/profile/support_screen.dart';
 import 'package:pedomatic_app/screens/user/qr_screen.dart';
 import 'package:pedomatic_app/screens/user/dashboard_shell.dart';
 
@@ -33,6 +34,9 @@ class RouteGenerator {
 
       case '/equipment-details':
         return MaterialPageRoute(builder: (context) => EquipmentDetails(),);
+
+      case '/support-screen':
+        return MaterialPageRoute(builder: (context) => SupportScreen());
 
       default:
         return MaterialPageRoute(builder: (context) => PageNotFoundScreen(),);

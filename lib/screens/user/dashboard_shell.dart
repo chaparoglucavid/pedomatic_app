@@ -3,7 +3,7 @@ import 'package:pedomatic_app/screens/user/home_screen.dart';
 import 'package:pedomatic_app/screens/user/map_screen.dart';
 import 'package:pedomatic_app/screens/user/qr_screen.dart';
 import 'package:pedomatic_app/screens/user/forum_screen.dart';
-import 'package:pedomatic_app/screens/user/profile_screen.dart';
+import 'package:pedomatic_app/screens/user/profile/profile_screen.dart';
 
 class DashboardShell extends StatefulWidget {
   const DashboardShell({super.key});

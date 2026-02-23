@@ -38,7 +38,9 @@ class SupportContactButton extends StatelessWidget {
               style: TextStyle(color: Colors.grey.shade600),
             ),
             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/support-screen');
+            },
           ),
         )
     );
