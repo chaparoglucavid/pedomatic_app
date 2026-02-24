@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class EquipmentCardElement extends StatelessWidget {
-  const EquipmentCardElement({super.key});
+  const EquipmentCardElement({super.key, required int index});
+
+  Object? get index => null;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/equipment-details');
+        Navigator.pushNamed(context, '/equipment-details', arguments: index);
       },
       child: Card(
         color: Colors.white,

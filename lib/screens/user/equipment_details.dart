@@ -12,6 +12,9 @@ class EquipmentDetails extends StatefulWidget {
 class _EquipmentDetailsState extends State<EquipmentDetails> {
   @override
   Widget build(BuildContext context) {
+
+    int index = ModalRoute.of(context)?.settings.arguments as int;
+
     return MasterLayout(
         slivers: [
             EquipmentDetailsSliverAppBar(),
@@ -20,6 +23,7 @@ class _EquipmentDetailsState extends State<EquipmentDetails> {
                   padding: EdgeInsetsGeometry.all(10),
                   child: Column(
                     children: [
+                      Text(index.toString()),
                       Text("Kateqoriyalar", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
                       Row(
                         children: [

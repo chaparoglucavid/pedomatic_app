@@ -15,7 +15,7 @@ class _EquipmentListState extends State<EquipmentList> {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
 
-          (context, index) => EquipmentCardElement(),
+          (context, index) => EquipmentCardElement(index: index),
           childCount: 10
       ),
     );
