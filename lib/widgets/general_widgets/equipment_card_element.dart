@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class EquipmentCardElement extends StatelessWidget {
-  const EquipmentCardElement({super.key, required int index});
-
-  Object? get index => null;
+  final int index;
+  const EquipmentCardElement({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +46,8 @@ class EquipmentCardElement extends StatelessWidget {
                     // Equipment name + number
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           "Equipment",
                           style: TextStyle(
                             fontSize: 16,
@@ -56,10 +55,10 @@ class EquipmentCardElement extends StatelessWidget {
                             color: Colors.black87,
                           ),
                         ),
-                        SizedBox(width: 6),
+                        const SizedBox(width: 6),
                         Text(
-                          "#12345",
-                          style: TextStyle(
+                          "#pedomat-${index}",
+                          style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,

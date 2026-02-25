@@ -13,7 +13,7 @@ class _EquipmentDetailsState extends State<EquipmentDetails> {
   @override
   Widget build(BuildContext context) {
 
-    int index = ModalRoute.of(context)?.settings.arguments as int;
+    int index = ModalRoute.of(context)?.settings.arguments as int? ?? 0;
 
     return MasterLayout(
         slivers: [
