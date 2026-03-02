@@ -37,6 +37,7 @@ dependencies:
   hugeicons: ^1.1.5
   lottie: ^3.0.0
   mobile_scanner: ^7.1.4
+  email_validator: ^3.0.0
 
 dev_dependencies:
   flutter_test:

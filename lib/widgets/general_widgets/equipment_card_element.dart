@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:pedomatic_app/model/equipments_model.dart';
 
 class EquipmentCardElement extends StatelessWidget {
-  final int index;
-  const EquipmentCardElement({super.key, required this.index});
+  final EquipmentsModel equipment;
+  const EquipmentCardElement({super.key, required this.equipment});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/equipment-details', arguments: index);
+        Navigator.pushNamed(context, '/equipment-details', arguments: equipment);
       },
       child: Card(
         color: Colors.white,
@@ -47,8 +48,8 @@ class EquipmentCardElement extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "Equipment",
+                        Text(
+                          equipment.equipmentName,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -57,7 +58,7 @@ class EquipmentCardElement extends StatelessWidget {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          "#pedomat-${index}",
+                          equipment.equipmentNumber,
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -70,7 +71,7 @@ class EquipmentCardElement extends StatelessWidget {
 
                     // Address
                     Text(
-                      "Equipment address will be in there",
+                      equipment.equipmentAddress,
                       style: TextStyle(
                         fontSize: 13,
                         color: Colors.grey.shade600,
@@ -92,11 +93,11 @@ class EquipmentCardElement extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
-                            children: const [
+                            children: [
                               Icon(Icons.check, size: 16, color: Colors.green),
                               SizedBox(width: 4),
                               Text(
-                                "Active",
+                                equipment.equipmentStatus.toString(),
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
@@ -118,7 +119,7 @@ class EquipmentCardElement extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.perm_device_info,
                                 size: 16,
@@ -126,7 +127,7 @@ class EquipmentCardElement extends StatelessWidget {
                               ),
                               SizedBox(width: 4),
                               Text(
-                                "120",
+                                equipment.equipmentCurrentPedCount.toString(),
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
@@ -176,7 +177,7 @@ class EquipmentCardElement extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.battery_full,
                                 size: 16,
@@ -184,7 +185,7 @@ class EquipmentCardElement extends StatelessWidget {
                               ),
                               SizedBox(width: 4),
                               Text(
-                                "85%",
+                                equipment.equipmentCurrentBatteryLevel.toString(),
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,

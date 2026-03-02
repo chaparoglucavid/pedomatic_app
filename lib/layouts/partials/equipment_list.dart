@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pedomatic_app/model/equipments_model.dart';
 import 'package:pedomatic_app/widgets/general_widgets/equipment_card_element.dart';
 
 class EquipmentList extends StatefulWidget {
@@ -15,8 +16,11 @@ class _EquipmentListState extends State<EquipmentList> {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
 
-          (context, index) => EquipmentCardElement(index: index),
-          childCount: 10
+          (context, index) {
+            final equipment = equipmentData[index];
+            return EquipmentCardElement(equipment: equipment);
+          },
+          childCount: equipmentData.length
       ),
     );
   }

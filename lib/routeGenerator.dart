@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pedomatic_app/screens/auth/step1_screen.dart';
 import 'package:pedomatic_app/screens/user/404_page_not_found.dart';
 import 'package:pedomatic_app/screens/user/equipment_details.dart';
-import 'package:pedomatic_app/screens/user/home_screen.dart';
 import 'package:pedomatic_app/screens/user/map_screen.dart';
 import 'package:pedomatic_app/screens/user/forum_screen.dart';
 import 'package:pedomatic_app/screens/user/profile/profile_screen.dart';
@@ -33,7 +32,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => ProfileScreen(),);
 
       case '/equipment-details':
-        return MaterialPageRoute(settings: settings ,builder: (context) => EquipmentDetails(),);
+        return MaterialPageRoute(settings: settings, builder: (context) => EquipmentDetails(),);
 
       case '/support-screen':
         return MaterialPageRoute(builder: (context) => SupportScreen());

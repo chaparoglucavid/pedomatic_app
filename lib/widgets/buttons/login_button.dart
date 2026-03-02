@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:pedomatic_app/screens/auth/enter_pin_screen.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+  final VoidCallback onPressed;
+
+  const LoginButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +13,7 @@ class LoginButton extends StatelessWidget {
       width: double.infinity,
       height: 56,
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.pushReplacementNamed(context, '/home-screen');
-        },
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.pinkAccent,
           foregroundColor: Colors.white,

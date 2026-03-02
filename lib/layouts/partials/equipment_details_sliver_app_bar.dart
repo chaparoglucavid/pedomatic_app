@@ -1,14 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pedomatic_app/model/equipments_model.dart';
 
-class EquipmentDetailsSliverAppBar extends StatefulWidget {
-  const EquipmentDetailsSliverAppBar({super.key});
+class EquipmentDetailsSliverAppBar extends StatelessWidget {
+  final EquipmentsModel equipment;
 
-  @override
-  State<EquipmentDetailsSliverAppBar> createState() => _EquipmentDetailsSliverAppBarState();
-}
+  const EquipmentDetailsSliverAppBar({
+    super.key,
+    required this.equipment,
+  });
 
-class _EquipmentDetailsSliverAppBarState extends State<EquipmentDetailsSliverAppBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -17,7 +17,10 @@ class _EquipmentDetailsSliverAppBarState extends State<EquipmentDetailsSliverApp
       backgroundColor: Colors.white,
       elevation: 0,
       flexibleSpace: FlexibleSpaceBar(
-        stretchModes: const [StretchMode.blurBackground, StretchMode.zoomBackground],
+        stretchModes: const [
+          StretchMode.blurBackground,
+          StretchMode.zoomBackground,
+        ],
         background: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -40,9 +43,27 @@ class _EquipmentDetailsSliverAppBarState extends State<EquipmentDetailsSliverApp
                   width: 180,
                   child: Image.asset('assets/images/pedomat.png'),
                 ),
-                SizedBox(height: 1,),
-                Text("Equipment #000001", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
-                Text("Equipment address will be displayed in here", style: TextStyle(color: Colors.white, fontSize: 10),)
+                const SizedBox(height: 8),
+
+                /// Equipment Number
+                Text(
+                  "Equipment #${equipment.equipmentNumber}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+
+                /// Equipment Address
+                Text(
+                  equipment.equipmentAddress,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
               ],
             ),
           ),
