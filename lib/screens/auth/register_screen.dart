@@ -24,12 +24,11 @@ class RegisterScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 10),
               // Animation
               Center(
                 child: Lottie.asset(
                   'assets/animations/owl2.json',
-                  height: 180,
+                  height: 90,
                   fit: BoxFit.contain,
                 ),
               ),

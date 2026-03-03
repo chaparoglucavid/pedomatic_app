@@ -57,7 +57,8 @@ class ForumSliverAppBar extends StatelessWidget {
                           ),
                           Text(
                             "Fikirlərinizi bölüşün, məsləhət alın",
-                            style: TextStyle(fontSize: 14, color: Colors.white),
+                            style: TextStyle(fontSize: 11, color: Colors.white),
+                            maxLines: 1,
                           ),
                         ],
                       ),

@@ -8,13 +8,13 @@ class UserPackages extends StatelessWidget {
     final packages = [
       Package(
         title: "Standard",
-        content: "Aylıq 20 ped + basic AI analiz",
+        content: "Aylıq 20 ped",
         price: "4.99 AZN",
         color: Colors.blue,
       ),
       Package(
         title: "Premium",
-        content: "Aylıq 40 ped + AI analiz + endirimlər",
+        content: "Aylıq 40 ped + endirimlər",
         price: "8.99 AZN",
         color: Colors.pink,
         popular: true,

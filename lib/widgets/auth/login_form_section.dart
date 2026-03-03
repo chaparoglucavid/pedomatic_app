@@ -1,6 +1,5 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:pedomatic_app/screens/auth/register_screen.dart';
 import 'package:pedomatic_app/widgets/buttons/login_button.dart';
 
 class LoginFormSection extends StatefulWidget {
