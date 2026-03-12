@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:pedomatic_app/screens/user/packages_screen.dart';
 
 class ProfileSubscriptionsButton extends StatefulWidget {
   const ProfileSubscriptionsButton({super.key});
@@ -43,7 +44,12 @@ class _ProfileSubscriptionsButtonState extends State<ProfileSubscriptionsButton>
               style: TextStyle(color: Colors.grey.shade600),
             ),
             trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PackagesScreen()),
+              );
+            },
           ),
         )
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pedomatic_app/model/package_model.dart';
 import 'package:pedomatic_app/repositories/package_repository.dart';
+import 'package:pedomatic_app/screens/user/packages_screen.dart';
 
 class UserPackages extends StatefulWidget {
   const UserPackages({super.key});
@@ -14,15 +15,16 @@ class _UserPackagesState extends State<UserPackages> {
   List<PackageModel> packages = [];
 
   void loadPackages() async {
-    final data = repository.fetchPackages();
-    setState(() async {
-      packages = await data;
+    final data = await repository.fetchPackages();
+    data.sort((a, b) => a.orderIndex.compareTo(b.orderIndex));
+    setState(() {
+      packages = data;
     });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
+    super.initState();
     loadPackages();
   }
 
@@ -32,11 +34,28 @@ class _UserPackagesState extends State<UserPackages> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text(
-              "Abunə paketləri",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Abunə paketləri",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PackagesScreen()),
+                    );
+                  },
+                  child: const Text(
+                    "Hamısı",
+                    style: TextStyle(color: Colors.indigo, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 4),
@@ -52,12 +71,12 @@ class _UserPackagesState extends State<UserPackages> {
           const SizedBox(height: 16),
 
           SizedBox(
-            height: 250,
+            height: 400,
             child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               scrollDirection: Axis.horizontal,
               itemCount: packages.length,
-              separatorBuilder: (_, __) => const SizedBox(width: 16),
+              separatorBuilder: (_, __) => const SizedBox(width: 20),
               itemBuilder: (_, i) => _PackageCard(packages[i]),
             ),
           ),
@@ -68,118 +87,211 @@ class _UserPackagesState extends State<UserPackages> {
 }
 
 class _PackageCard extends StatelessWidget {
-  final Package p;
+  final PackageModel p;
 
   const _PackageCard(this.p);
 
   @override
   Widget build(BuildContext context) {
+    final bool isPopular = p.isPopular;
+    final String badge = p.badgeText.isNotEmpty ? p.badgeText : (isPopular ? "MƏŞHUR" : "");
+
     return Container(
-      width: 240,
-      padding: const EdgeInsets.all(18),
+      width: 280,
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(26),
-        gradient: LinearGradient(
-          colors: [
-            p.color.withOpacity(0.15),
-            p.color.withOpacity(0.35),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(32),
+        border: Border.all(
+          color: isPopular ? Colors.indigo : Colors.grey.shade200,
+          width: isPopular ? 2.5 : 1,
         ),
+        boxShadow: [
+          BoxShadow(
+            color: isPopular 
+              ? Colors.indigo.withOpacity(0.12) 
+              : Colors.black.withOpacity(0.04),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          if (p.popular)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                "⭐ Ən çox seçilən",
-                style: TextStyle(
-                  fontSize: 11,
-                  color: p.color,
-                  fontWeight: FontWeight.bold,
+          if (badge.isNotEmpty)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Transform.translate(
+                offset: const Offset(0, -12),
+                child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: isPopular ? Colors.indigo : Colors.black87,
+                      borderRadius: BorderRadius.circular(100),
+                      boxShadow: [
+                        BoxShadow(
+                          color: (isPopular ? Colors.indigo : Colors.black).withOpacity(0.2),
+                          blurRadius: 8,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Text(
+                      badge.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
-
-          const SizedBox(height: 10),
-
-          Text(
-            p.title,
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: p.color,
-            ),
-          ),
-
-          const SizedBox(height: 8),
-
-          Text(
-            p.content,
-            style: TextStyle(
-              color: Colors.black.withOpacity(0.7),
-              fontSize: 14,
-            ),
-          ),
-
-          const Spacer(),
-
-          Text(
-            p.price,
-            style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-              color: p.color,
-            ),
-          ),
-
-          const SizedBox(height: 10),
-
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: p.color,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+          
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: isPopular ? Colors.indigo.withOpacity(0.1) : Colors.grey.shade50,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Icon(
+                        Icons.auto_awesome_outlined,
+                        color: isPopular ? Colors.indigo : Colors.grey,
+                        size: 24,
+                      ),
+                    ),
+                    if (isPopular)
+                      const Icon(Icons.star_rounded, color: Colors.amber, size: 24),
+                  ],
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 12),
-              ),
-              onPressed: () {},
-              child: const Text(
-                "Abunə ol",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                const SizedBox(height: 20),
+                Text(
+                  p.packageTitle,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.black87,
+                    letterSpacing: -0.5,
+                  ),
                 ),
-              ),
+                const SizedBox(height: 6),
+                Text(
+                  p.packageDescription,
+                  style: TextStyle(
+                    color: Colors.grey.shade500,
+                    fontSize: 13,
+                    height: 1.4,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    Text(
+                      p.packagePrice,
+                      style: const TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      "AZN",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      "/ ${p.packageValidityDays} gün",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                const Divider(height: 1),
+                const SizedBox(height: 16),
+                Expanded(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: p.features.length,
+                    separatorBuilder: (_, __) => const SizedBox(height: 10),
+                    itemBuilder: (_, idx) => Row(
+                      children: [
+                        Icon(
+                          Icons.check_circle_rounded,
+                          size: 16,
+                          color: isPopular ? Colors.indigo : Colors.indigo.shade200,
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            "${p.features[idx].name} ${p.features[idx].value.isNotEmpty ? '— ${p.features[idx].value}' : ''}",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey.shade700,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: isPopular ? Colors.indigo : Colors.black,
+                      foregroundColor: Colors.white,
+                      elevation: isPopular ? 8 : 0,
+                      shadowColor: Colors.indigo.withOpacity(0.5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      "Abunə ol",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 15,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
       ),
     );
   }
-}
-
-class Package {
-  final String title;
-  final String content;
-  final String price;
-  final Color color;
-  final bool popular;
-
-  Package({
-    required this.title,
-    required this.content,
-    required this.price,
-    required this.color,
-    this.popular = false,
-  });
 }
