@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pedomatic_app/helpers/general_helpers.dart';
+import 'package:pedomatic_app/model/stories_model.dart';
+import 'package:pedomatic_app/repositories/story_repository.dart';
 
 class HomePageStoriesSection extends StatefulWidget {
   const HomePageStoriesSection({super.key});
@@ -10,32 +13,21 @@ class HomePageStoriesSection extends StatefulWidget {
 }
 
 class _HomePageStoriesSectionState extends State<HomePageStoriesSection> {
-  List<Stories> stories = [
-    Stories(
-      1,
-      "Menstrual döngünü hesabla",
-      "Pedomat app v asitəsi ilə döngülərin hesablanması süni intellekt köməyi ilə artıq daha asan",
-      'https://konusmamizgerek.org/wp-content/uploads/2025/05/unnamed-1-819x1024.jpg',
-    ),
-    Stories(
-      2,
-      "Cibinizə qənaət edin",
-      "Pedomat app vasitəsi ilə ped sifarişi edin və 35% endirimdən yararlanın!",
-      'https://images.themagger.net/wp-content/uploads/2021/06/regyoksullugu.jpg',
-    ),
-    Stories(
-      3,
-      "Sağlıqlı arıqlama",
-      "Pedomat app vasitəsi ilə sağlıqlı arıqlama yolları!",
-      'https://www.buseterim.com.tr/upload/default/2019/8/16/reglolmak680.jpg',
-    ),
-    Stories(
-      4,
-      "m10 ilə ödəmə imkanı",
-      "Pedomat app ödəniş üçün artıq m10 istifadə edə bilərsiniz!",
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSs5vsd5acAKu2mLVCn7GhKZmhpTsyUBHKCw&s',
-    )
-  ];
+  final repository = StoryRepository();
+  List<StoriesModel> stories = [];
+
+  void loadStories() async {
+    final data = await repository.fetchStories();
+    setState(() {
+      stories = data;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadStories();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +43,8 @@ class _HomePageStoriesSectionState extends State<HomePageStoriesSection> {
           itemBuilder: (context, index) {
             final story = stories[index];
 
+            debugPrint(story.storyImagePath);
+
             return SizedBox(
               width: 90,
               child: Column(
@@ -65,7 +59,7 @@ class _HomePageStoriesSectionState extends State<HomePageStoriesSection> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(18),
                       child: Image.network(
-                        story.image ?? "",
+                        story.storyImagePath,
                         fit: BoxFit.cover,
                         errorBuilder: (_, __, ___) =>
                         const Icon(Icons.broken_image),
@@ -74,7 +68,7 @@ class _HomePageStoriesSectionState extends State<HomePageStoriesSection> {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    story.title ?? "",
+                    story.storyTitle,
                     maxLines: 1,
                     style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                     overflow: TextOverflow.ellipsis,

@@ -25,7 +25,7 @@ class Step1Screen extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 child: Lottie.asset(
                   'assets/animations/owl.json',
-                  height: 280,
+                  height: 180,
                   fit: BoxFit.contain,
                 ),
               ),

@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:pedomatic_app/model/package_model.dart';
+import 'package:pedomatic_app/repositories/package_repository.dart';
 
-class UserPackages extends StatelessWidget {
+class UserPackages extends StatefulWidget {
   const UserPackages({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final packages = [
-      Package(
-        title: "Standard",
-        content: "Aylıq 20 ped",
-        price: "4.99 AZN",
-        color: Colors.blue,
-      ),
-      Package(
-        title: "Premium",
-        content: "Aylıq 40 ped + endirimlər",
-        price: "8.99 AZN",
-        color: Colors.pink,
-        popular: true,
-      ),
-      Package(
-        title: "VIP",
-        content: "Limitsiz ped + xüsusi kampaniyalar",
-        price: "14.99 AZN",
-        color: Colors.deepPurple,
-      ),
-    ];
+  State<UserPackages> createState() => _UserPackagesState();
+}
 
+class _UserPackagesState extends State<UserPackages> {
+  final repository = PackageRepository();
+  List<PackageModel> packages = [];
+
+  void loadPackages() async {
+    final data = repository.fetchPackages();
+    setState(() async {
+      packages = await data;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    loadPackages();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,6 +40,7 @@ class UserPackages extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
@@ -46,6 +48,7 @@ class UserPackages extends StatelessWidget {
               style: TextStyle(color: Colors.grey.shade600),
             ),
           ),
+
           const SizedBox(height: 16),
 
           SizedBox(
@@ -152,7 +155,10 @@ class _PackageCard extends StatelessWidget {
               onPressed: () {},
               child: const Text(
                 "Abunə ol",
-                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

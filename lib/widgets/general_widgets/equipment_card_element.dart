@@ -97,7 +97,7 @@ class EquipmentCardElement extends StatelessWidget {
                               Icon(Icons.check, size: 16, color: Colors.green),
                               SizedBox(width: 4),
                               Text(
-                                equipment.equipmentStatus.toString(),
+                                equipment.convertedStatus(equipment.equipmentStatus),
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
@@ -127,7 +127,7 @@ class EquipmentCardElement extends StatelessWidget {
                               ),
                               SizedBox(width: 4),
                               Text(
-                                equipment.equipmentCurrentPedCount.toString(),
+                                equipment.equipmentCurrentPedCount,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
@@ -156,36 +156,6 @@ class EquipmentCardElement extends StatelessWidget {
                               SizedBox(width: 4),
                               Text(
                                 "1km",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-
-                        // Battery
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.battery_full,
-                                size: 16,
-                                color: Colors.orange,
-                              ),
-                              SizedBox(width: 4),
-                              Text(
-                                equipment.equipmentCurrentBatteryLevel.toString(),
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
