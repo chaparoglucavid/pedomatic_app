@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pedomatic_app/services/api_service.dart';
+import 'package:pedomatic_app/services/auth/register_service.dart';
 import 'package:pedomatic_app/widgets/buttons/register_button.dart';
 
 class RegisterFormSection extends StatefulWidget {
@@ -12,6 +14,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
 
   final _formKey = GlobalKey<FormState>();
 
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
@@ -41,13 +44,21 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
+      print("Name: ${_nameController.text}");
       print("Email: ${_emailController.text}");
       print("Password: ${_passwordController.text}");
+
+      String name = _nameController.text;
+      String email = _emailController.text;
+      String password = _passwordController.text;
+
+      var response = registerUser(name, email, password);
     }
   }
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
@@ -61,6 +72,18 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          TextFormField(
+            controller: _nameController,
+            keyboardType: TextInputType.name,
+            decoration: _buildInputDecoration("Ad Soyad", Icons.person),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Ad, soyad boş ola bilməz";
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 16),
           TextFormField(
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
