@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "654425199726",
+    "project_id": "pedomat-2ecf4",
+    "storage_bucket": "pedomat-2ecf4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654425199726:android:14a920bc3c560acc19427f",
+        "android_client_info": {
+          "package_name": "com.example.pedomatic_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqEKglfiA1JKYbm6CUWfWEPhrJrjt0_1A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
