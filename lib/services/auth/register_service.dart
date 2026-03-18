@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:pedomatic_app/services/api_service.dart';
 
 Future<int?> registerUser(
   String name,

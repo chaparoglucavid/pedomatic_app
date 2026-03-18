@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:pedomatic_app/services/api_service.dart';
 import 'package:pedomatic_app/widgets/buttons/login_button.dart';
 
 class LoginFormSection extends StatefulWidget {
@@ -10,6 +13,7 @@ class LoginFormSection extends StatefulWidget {
 }
 
 class _LoginFormSectionState extends State<LoginFormSection> {
+  final ApiService api = ApiService();
   String _email = '', _password = '';
   final formKey = GlobalKey<FormState>();
 
@@ -87,12 +91,16 @@ class _LoginFormSectionState extends State<LoginFormSection> {
           ),
           const SizedBox(height: 8),
           LoginButton(
-            onPressed: () {
+            onPressed: () async {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
+                final response = await api.login(
+                  email: _email,
+                  password: _password,
+                );
+                debugPrint(response.data['message']);
 
-                if (_email == 'chaparoglucavid@gmail.com' &&
-                    _password == 'salamadmin') {
+                if (response.statusCode == HttpStatus.ok) {
                   Navigator.pushNamed(context, '/home-screen');
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(

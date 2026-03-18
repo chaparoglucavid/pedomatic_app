@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
 import 'package:pedomatic_app/layouts/master_layout.dart';
 import 'package:pedomatic_app/layouts/partials/profile_app_bar.dart';
 import 'package:pedomatic_app/widgets/buttons/balance_history_button.dart';

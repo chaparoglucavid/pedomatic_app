@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:pedomatic_app/screens/auth/enter_pin_screen.dart';
 
 class LoginButton extends StatelessWidget {
   final VoidCallback onPressed;

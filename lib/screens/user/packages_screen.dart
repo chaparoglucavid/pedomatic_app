@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pedomatic_app/model/package_model.dart';
-import 'package:pedomatic_app/repositories/package_repository.dart';
-import 'package:pedomatic_app/widgets/general_widgets/user_packages.dart';
+import 'package:pedomatic_app/services/api_service.dart';
 
 class PackagesScreen extends StatefulWidget {
   const PackagesScreen({super.key});
@@ -11,23 +10,37 @@ class PackagesScreen extends StatefulWidget {
 }
 
 class _PackagesScreenState extends State<PackagesScreen> {
-  final repository = PackageRepository();
+  final api = ApiService();
   List<PackageModel> packages = [];
   bool isLoading = true;
 
   void loadPackages() async {
     setState(() => isLoading = true);
+
     try {
-      final data = await repository.fetchPackages();
+      final response = await api.getPackages();
+
+      final data = response
+          .map((json) => PackageModel.fromJson(json))
+          .toList();
+
       data.sort((a, b) => a.orderIndex.compareTo(b.orderIndex));
+
+      if (!mounted) return;
+
       setState(() {
         packages = data;
         isLoading = false;
       });
     } catch (e) {
+      if (!mounted) return;
+
       setState(() => isLoading = false);
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Paketlər yüklənərkən xəta baş verdi")),
+        const SnackBar(
+          content: Text("Paketlər yüklənərkən xəta baş verdi"),
+        ),
       );
     }
   }

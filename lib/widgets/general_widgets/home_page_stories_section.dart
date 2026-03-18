@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pedomatic_app/helpers/general_helpers.dart';
 import 'package:pedomatic_app/model/stories_model.dart';
-import 'package:pedomatic_app/repositories/story_repository.dart';
+import 'package:pedomatic_app/services/api_service.dart';
 
 class HomePageStoriesSection extends StatefulWidget {
   const HomePageStoriesSection({super.key});
@@ -13,11 +12,12 @@ class HomePageStoriesSection extends StatefulWidget {
 }
 
 class _HomePageStoriesSectionState extends State<HomePageStoriesSection> {
-  final repository = StoryRepository();
+  final api = ApiService();
   List<StoriesModel> stories = [];
 
   void loadStories() async {
-    final data = await repository.fetchStories();
+    final response = await api.getStories();
+    final data = response.map((json) => StoriesModel.fromJson(json)).toList();
     setState(() {
       stories = data;
     });

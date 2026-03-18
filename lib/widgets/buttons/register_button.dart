@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class RegisterButton extends StatelessWidget {
-  const RegisterButton({super.key});
+  final VoidCallback onPressed;
+  RegisterButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class RegisterButton extends StatelessWidget {
       height: 56,
       child: ElevatedButton(
         onPressed: () {
-          // Add registration logic here
+          onPressed();
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.pinkAccent,

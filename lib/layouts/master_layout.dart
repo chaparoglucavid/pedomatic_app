@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pedomatic_app/layouts/partials/bottom_navigation_section.dart';
 
 class MasterLayout extends StatelessWidget {
   final List<Widget> slivers;

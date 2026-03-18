@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:pedomatic_app/services/api_service.dart';
 
 class LogoutButton extends StatelessWidget {
-  const LogoutButton({super.key});
+  LogoutButton({super.key});
+  final ApiService api = ApiService();
+  final String token = 'test';
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +70,9 @@ class LogoutButton extends StatelessWidget {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            onPressed: () {},
+            onPressed: () {
+              final response = api.logout(token);
+            },
             child: const Text("Çıxış"),
           )
         ],

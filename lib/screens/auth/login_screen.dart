@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pedomatic_app/screens/auth/register_screen.dart';
+import 'package:pedomatic_app/screens/user/home_screen.dart';
 import 'package:pedomatic_app/widgets/auth/login_form_section.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -46,15 +49,34 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 'Davam etmək üçün zəhmət olmasa daxil olun',
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey[600],
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge?.copyWith(color: Colors.grey[600]),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
               // Form
               const LoginFormSection(),
               const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    final user = await signInWithGoogle();
+
+                    if (user.user != null) {
+                      // məsələn Home səhifəyə keç
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => HomeScreen()),
+                      );
+                    }
+                  } catch (e) {
+                    print("Xəta: $e");
+                  }
+                },
+                child: Text("Google ilə daxil ol"),
+              ),
+              SizedBox(height: 20),
               // Register Link
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -67,7 +89,9 @@ class LoginScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const RegisterScreen()),
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterScreen(),
+                        ),
                       );
                     },
                     child: Text(
@@ -86,5 +110,25 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    await GoogleSignIn.instance.initialize(
+      serverClientId: "1:654425199726:android:14a920bc3c560acc19427f",
+    );
+
+    final account = await GoogleSignIn.instance.authenticate();
+
+    final auth = account.authentication;
+
+    if (auth.idToken == null) {
+      throw Exception("ID Token null");
+    }
+
+    final credential = GoogleAuthProvider.credential(
+      idToken: auth.idToken,
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }

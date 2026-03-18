@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pedomatic_app/model/package_model.dart';
-import 'package:pedomatic_app/repositories/package_repository.dart';
 import 'package:pedomatic_app/screens/user/packages_screen.dart';
+import 'package:pedomatic_app/services/api_service.dart';
 
 class UserPackages extends StatefulWidget {
   const UserPackages({super.key});
@@ -11,11 +11,12 @@ class UserPackages extends StatefulWidget {
 }
 
 class _UserPackagesState extends State<UserPackages> {
-  final repository = PackageRepository();
+  final api = ApiService();
   List<PackageModel> packages = [];
 
   void loadPackages() async {
-    final data = await repository.fetchPackages();
+    final response = await api.getPackages();
+    final data = response.map((json) => PackageModel.fromJson(json)).toList();
     data.sort((a, b) => a.orderIndex.compareTo(b.orderIndex));
     setState(() {
       packages = data;
@@ -88,7 +89,6 @@ class _UserPackagesState extends State<UserPackages> {
 
 class _PackageCard extends StatelessWidget {
   final PackageModel p;
-
   const _PackageCard(this.p);
 
   @override
@@ -233,7 +233,7 @@ class _PackageCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 const Divider(height: 1),
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
                 Expanded(
                   child: ListView.separated(
                     shrinkWrap: true,

@@ -69,11 +69,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           StepsAndEnergySection(),
-
           HomePageAdsBanner(),
-
           UserPackages(),
-
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 20, 16, 4),

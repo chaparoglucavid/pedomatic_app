@@ -40,4 +40,20 @@ class UsersModel {
       (json['activePackage'] ?? '').toString(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['fullName'] = this.fullName;
+    data['email'] = this.email;
+    data['phone'] = this.phone;
+    data['birthdate'] = this.birthdate;
+    data['activityStatus'] = this.activityStatus;
+    data['systemStatus'] = this.systemStatus;
+    data['userCurrentBalance'] = this.userCurrentBalance;
+    data['type'] = this.type;
+    data['createdAt'] = this.createdAt;
+
+    return data;
+  }
 }

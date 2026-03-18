@@ -1,11 +1,7 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pedomatic_app/model/equipments_model.dart';
-import 'package:pedomatic_app/repositories/equipment_repository.dart';
+import 'package:pedomatic_app/services/api_service.dart';
 import 'package:pedomatic_app/widgets/general_widgets/equipment_card_element.dart';
 
 class EquipmentList extends StatefulWidget {
@@ -17,11 +13,12 @@ class EquipmentList extends StatefulWidget {
 
 
 class _EquipmentListState extends State<EquipmentList> {
-  final repository = EquipmentRepository();
+  final api = ApiService();
   List<EquipmentsModel> equipments = [];
 
   void loadEquipments() async {
-    final data = await repository.fetchEquipments();
+    final response = await api.getEquipments();
+    final data = response.map((json) => EquipmentsModel.fromJson(json)).toList();
     setState(() {
       equipments = data;
     });

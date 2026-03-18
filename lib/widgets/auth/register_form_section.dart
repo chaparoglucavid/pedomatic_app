@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:pedomatic_app/screens/user/home_screen.dart';
 import 'package:pedomatic_app/services/api_service.dart';
 import 'package:pedomatic_app/services/auth/register_service.dart';
 import 'package:pedomatic_app/widgets/buttons/register_button.dart';
@@ -42,17 +46,30 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
     );
   }
 
-  void _submitForm() {
+  void _submitForm() async {
     if (_formKey.currentState!.validate()) {
-      print("Name: ${_nameController.text}");
-      print("Email: ${_emailController.text}");
-      print("Password: ${_passwordController.text}");
+      final name = _nameController.text;
+      final email = _emailController.text;
+      final password = _passwordController.text;
+      final confirmPassword = _confirmPasswordController.text;
 
-      String name = _nameController.text;
-      String email = _emailController.text;
-      String password = _passwordController.text;
-
-      var response = registerUser(name, email, password);
+      final ApiService api = ApiService();
+      final response = await api.register(name: name,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword);
+      if (response.statusCode == 422) {
+        AlertDialog(
+          key: GlobalKey(),
+          title: Text("Xəta!"),
+          elevation: 4,
+          content: Text(response.statusMessage.toString()),
+        );
+      }
+      else if (response.statusCode == HttpStatus.ok) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => HomeScreen()));
+      }
     }
   }
 
@@ -117,7 +134,8 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
           TextFormField(
             controller: _confirmPasswordController,
             obscureText: true,
-            decoration: _buildInputDecoration("Şifrəni təsdiqlə", Icons.lock_outline),
+            decoration: _buildInputDecoration(
+                "Şifrəni təsdiqlə", Icons.lock_outline),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return "Şifrə təsdiqi boş ola bilməz";
@@ -131,7 +149,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
           const SizedBox(height: 24),
           GestureDetector(
             onTap: _submitForm,
-            child: const RegisterButton(),
+            child: RegisterButton(onPressed: _submitForm,),
           ),
           const SizedBox(height: 16),
         ],
