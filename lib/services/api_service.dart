@@ -6,7 +6,7 @@ class ApiService {
   ApiService() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: 'http://10.0.2.2:8000/api',
+        baseUrl: 'http://172.16.20.8:8000/api',
         connectTimeout: const Duration(seconds: 10),
         headers: {"Accept": "application/json"},
       ),

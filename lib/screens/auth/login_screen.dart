@@ -57,25 +57,6 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 40),
               // Form
               const LoginFormSection(),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () async {
-                  try {
-                    final user = await signInWithGoogle();
-
-                    if (user.user != null) {
-                      // məsələn Home səhifəyə keç
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (_) => HomeScreen()),
-                      );
-                    }
-                  } catch (e) {
-                    print("Xəta: $e");
-                  }
-                },
-                child: Text("Google ilə daxil ol"),
-              ),
               SizedBox(height: 20),
               // Register Link
               Row(
@@ -110,25 +91,5 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<UserCredential> signInWithGoogle() async {
-    await GoogleSignIn.instance.initialize(
-      serverClientId: "1:654425199726:android:14a920bc3c560acc19427f",
-    );
-
-    final account = await GoogleSignIn.instance.authenticate();
-
-    final auth = account.authentication;
-
-    if (auth.idToken == null) {
-      throw Exception("ID Token null");
-    }
-
-    final credential = GoogleAuthProvider.credential(
-      idToken: auth.idToken,
-    );
-
-    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }

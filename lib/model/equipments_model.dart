@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 class EquipmentsModel {
   final String equipmentId;
   final String equipmentName;
@@ -39,22 +42,28 @@ class EquipmentsModel {
   }
 
   //'active', 'deactive', 'under_repair', 'maintenance', 'offline', 'broken'
-  String convertedStatus(equipmentStatus) {
+  Icon convertedStatus(equipmentStatus) {
     switch (equipmentStatus) {
       case "active":
-        return "Aktiv";
+        return Icon(Icons.check_circle, size: 16,  color: Colors.white,);
+
       case "deactive":
-        return "Deaktiv";
+        return Icon(Icons.cancel, size: 16,  color: Colors.white,);
+
       case "under_repair":
-        return "Təmirdədir";
+        return Icon(Icons.build, size: 16,  color: Colors.white,);
+
       case "maintenance":
-        return "Texniki dəstək göstərilir";
+        return Icon(Icons.settings, size: 16,  color: Colors.white,);
+
       case "offline":
-        return "Oflayn";
+        return Icon(Icons.cloud_off, size: 16,  color: Colors.white,);
+
       case "broken":
-        return "Zədəlidir";
+        return Icon(Icons.error, size: 16,  color: Colors.white,);
+
       default:
-        return "Aktiv";
+        return Icon(Icons.help_outline, size: 16,  color: Colors.white,);
     }
   }
 

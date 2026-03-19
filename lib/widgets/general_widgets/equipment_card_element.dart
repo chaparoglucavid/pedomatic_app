@@ -51,24 +51,41 @@ class EquipmentCardElement extends StatelessWidget {
                         Text(
                           equipment.equipmentName,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.black87,
                           ),
                         ),
                         const SizedBox(width: 6),
-                        Text(
-                          equipment.equipmentNumber,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey,
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                child: equipment.convertedStatus(equipment.equipmentStatus),
+                              )
+                            ],
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 6),
-
+                    Text(
+                      equipment.equipmentNumber,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const SizedBox(height: 6,),
                     // Address
                     Text(
                       equipment.equipmentAddress,
@@ -82,32 +99,6 @@ class EquipmentCardElement extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Status
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.green.shade100,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(Icons.check, size: 16, color: Colors.green),
-                              SizedBox(width: 4),
-                              Text(
-                                equipment.convertedStatus(equipment.equipmentStatus),
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-
                         // Ped
                         Container(
                           padding: const EdgeInsets.symmetric(
