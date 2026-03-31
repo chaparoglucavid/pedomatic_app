@@ -58,6 +58,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
           email: email,
           password: password,
           confirmPassword: confirmPassword);
+
       if (response.statusCode == 422) {
         AlertDialog(
           key: GlobalKey(),

@@ -32,7 +32,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (context) => ProfileScreen(),);
 
       case '/equipment-details':
-        return MaterialPageRoute(settings: settings, builder: (context) => EquipmentDetails(),);
+        final id = settings.arguments as String;
+        return MaterialPageRoute(settings: settings, builder: (context) => EquipmentDetails(id: id),);
 
       case '/support-screen':
         return MaterialPageRoute(builder: (context) => SupportScreen());

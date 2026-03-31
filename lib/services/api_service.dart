@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:pedomatic_app/model/equipments_model.dart';
 
 class ApiService {
   late final Dio _dio;
@@ -6,7 +7,7 @@ class ApiService {
   ApiService() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: 'http://172.16.20.8:8000/api',
+        baseUrl: 'http://10.0.2.2:8000/api',
         connectTimeout: const Duration(seconds: 10),
         headers: {"Accept": "application/json"},
       ),
@@ -18,7 +19,12 @@ class ApiService {
     final response = await _dio.get('/equipments');
     return _extractList(response.data);
   }
-
+  
+  Future<EquipmentsModel> getEquipmentDetails(String equipmentId) async {
+    final response = await _dio.get('/equipment-details/$equipmentId');
+    return EquipmentsModel.fromJson(response.data);
+  }
+  
   // PACKAGES
   Future<List> getPackages() async {
     final response = await _dio.get('/packages');

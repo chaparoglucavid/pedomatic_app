@@ -9,7 +9,7 @@ class EquipmentCardElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/equipment-details', arguments: equipment);
+        Navigator.pushNamed(context, '/equipment-details', arguments: equipment.equipmentId);
       },
       child: Card(
         color: Colors.white,
