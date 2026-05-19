@@ -1,23 +1,37 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:pedomatic_app/routeGenerator.dart';
 import 'package:pedomatic_app/screens/auth/step1_screen.dart';
+import 'package:pedomatic_app/screens/user/dashboard_shell.dart';
+import 'package:pedomatic_app/screens/auth/login_screen.dart';
 
-void main()  async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
-  await Hive.openBox('userInformations');
-  runApp(const MyApp());
+  final box = await Hive.openBox('userInformations');
+  runApp(MyApp(box: box));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Box box;
+  const MyApp({super.key, required this.box});
 
   @override
   Widget build(BuildContext context) {
+    // Session management logic
+    Widget initialScreen;
+    final token = box.get('token');
+    final isRegistered = box.get('isRegistered', defaultValue: false);
+
+    if (token != null) {
+      initialScreen = DashboardShell();
+    } else if (isRegistered) {
+      initialScreen = const LoginScreen();
+    } else {
+      initialScreen = const Step1Screen();
+    }
+
     return MaterialApp(
       title: 'Pedomat',
       theme: ThemeData(
@@ -25,7 +39,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const Step1Screen(),
+      home: initialScreen,
       onGenerateRoute: RouteGenerator.routeGenerator,
     );
   }

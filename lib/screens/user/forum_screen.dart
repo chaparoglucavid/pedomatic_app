@@ -12,13 +12,19 @@ class ForumScreen extends StatefulWidget {
 }
 
 class _ForumScreenState extends State<ForumScreen> {
+  final GlobalKey<ForumListState> _forumListKey = GlobalKey<ForumListState>();
+
   @override
   Widget build(BuildContext context) {
     return MasterLayout(
       slivers: [
         ForumSliverAppBar(),
-        ForumAddButton(),
-        ForumList()
+        ForumAddButton(
+          onPostCreated: () {
+            _forumListKey.currentState?.loadForums();
+          },
+        ),
+        ForumList(key: _forumListKey)
       ],
     );
   }

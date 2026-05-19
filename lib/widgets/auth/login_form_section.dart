@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:pedomatic_app/services/api_service.dart';
 import 'package:pedomatic_app/widgets/buttons/login_button.dart';
 
@@ -94,24 +95,37 @@ class _LoginFormSectionState extends State<LoginFormSection> {
             onPressed: () async {
               if (formKey.currentState!.validate()) {
                 formKey.currentState!.save();
-                final response = await api.login(
-                  email: _email,
-                  password: _password,
-                );
-                debugPrint(response.data['message']);
+                try {
+                  final response = await api.login(
+                    email: _email,
+                    password: _password,
+                  );
 
-                if (response.statusCode == HttpStatus.ok) {
-                  Navigator.pushNamed(context, '/home-screen');
-                } else {
+                  if (response.statusCode == HttpStatus.ok) {
+                    final token = response.data['token'];
+                    final box = Hive.box('userInformations');
+                    await box.put('token', token);
+                    await box.put('user', response.data['user']);
+
+                    Navigator.pushNamed(context, '/home-screen');
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        elevation: 5,
+                        showCloseIcon: true,
+                        duration: Duration(seconds: 3),
+                        backgroundColor: Colors.redAccent,
+                        content: Text(
+                          "Zəhmət olmasa məlumatların doğruluğunu yoxlayın.",
+                        ),
+                      ),
+                    );
+                  }
+                } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      elevation: 5,
-                      showCloseIcon: true,
-                      duration: Duration(seconds: 3),
                       backgroundColor: Colors.redAccent,
-                      content: Text(
-                        "Zəhmət olmasa məlumatların doğruluğunu yoxlayın.",
-                      ),
+                      content: Text("Xəta baş verdi: $e"),
                     ),
                   );
                 }

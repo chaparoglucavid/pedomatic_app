@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 import 'package:pedomatic_app/model/equipments_model.dart';
 
 class ApiService {
@@ -12,6 +13,17 @@ class ApiService {
         headers: {"Accept": "application/json"},
       ),
     );
+
+    _dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        final box = Hive.box('userInformations');
+        final token = box.get('token');
+        if (token != null) {
+          options.headers["Authorization"] = "Bearer $token";
+        }
+        return handler.next(options);
+      },
+    ));
   }
 
   // EQUIPMENTS
@@ -19,10 +31,28 @@ class ApiService {
     final response = await _dio.get('/equipments');
     return _extractList(response.data);
   }
-  
-  Future<EquipmentsModel> getEquipmentDetails(String equipmentId) async {
+
+  Future<Map<String, dynamic>> getEquipmentDetails(String equipmentId) async {
     final response = await _dio.get('/equipment-details/$equipmentId');
-    return EquipmentsModel.fromJson(response.data);
+    return response.data;
+  }
+
+  // ORDERS
+  Future<Response> placeOrder({
+    required String deviceId,
+    required List<Map<String, dynamic>> orderItems,
+    required String paymentMethod,
+    required double totalAmount,
+  }) async {
+    return await _dio.post(
+      '/orders',
+      data: {
+        "device": deviceId,
+        "orderItems": orderItems,
+        "paymentMethod": paymentMethod,
+        "totalAmount": totalAmount,
+      },
+    );
   }
   
   // PACKAGES
@@ -35,6 +65,33 @@ class ApiService {
   Future<List> getStories() async {
     final response = await _dio.get('/stories');
     return _extractList(response.data);
+  }
+
+  // FORUMS
+  Future<List> getForums() async {
+    final response = await _dio.get('/forum');
+    return _extractList(response.data);
+  }
+
+  Future<Response> createForum(String subject, String content) async {
+    return await _dio.post('/forum', data: {
+      'forum_subject': subject,
+      'forum_content': content,
+    });
+  }
+
+  // PROFILE
+  Future<Response> updateProfile(String name, String email, String phone) async {
+    return await _dio.post('/update-profile', data: {
+      'name': name,
+      'email': email,
+      'phone': phone,
+    });
+  }
+
+  Future<Map<String, dynamic>> getMe() async {
+    final response = await _dio.get('/me');
+    return response.data;
   }
 
   //LOGIN

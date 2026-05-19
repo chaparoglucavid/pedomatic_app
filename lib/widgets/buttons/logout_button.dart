@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:hive/hive.dart';
 import 'package:pedomatic_app/services/api_service.dart';
 
 class LogoutButton extends StatelessWidget {
   LogoutButton({super.key});
   final ApiService api = ApiService();
-  final String token = 'test';
-
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +68,23 @@ class LogoutButton extends StatelessWidget {
             child: const Text("Ləğv et"),
           ),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            onPressed: () {
-              final response = api.logout(token);
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+            ),
+            onPressed: () async {
+              final box = Hive.box('userInformations');
+              final token = box.get('token');
+              if (token != null) {
+                try {
+                  await api.logout(token);
+                } catch (e) {
+                  debugPrint("Logout error: $e");
+                }
+              }
+              await box.delete('token');
+              await box.delete('user');
+              Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
             },
             child: const Text("Çıxış"),
           )

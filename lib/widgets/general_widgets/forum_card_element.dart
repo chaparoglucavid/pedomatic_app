@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class ForumCardElement extends StatelessWidget {
-  const ForumCardElement({super.key});
+  final dynamic forum;
+  const ForumCardElement({super.key, required this.forum});
 
   @override
   Widget build(BuildContext context) {
+    final String subject = forum['forum_subject'] ?? 'Mövzu yoxdur';
+    final String content = forum['forum_content'] ?? 'Məzmun yoxdur';
+    final int commentCount = forum['forum_comments'] != null ? (forum['forum_comments'] as List).length : 0;
+    final String userName = forum['user'] != null ? forum['user']['name'] : 'Naməlum';
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Material(
@@ -25,9 +31,21 @@ class ForumCardElement extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 12,
+                    backgroundColor: Colors.deepPurple.withOpacity(0.1),
+                    child: Text(userName[0].toUpperCase(), style: const TextStyle(fontSize: 12, color: Colors.deepPurple)),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(userName, style: TextStyle(color: Colors.grey[600], fontSize: 12)),
+                ],
+              ),
+              const SizedBox(height: 8),
               /// Title
               Text(
-                "Boğaz ağrısı yarana biləcək səbəblər",
+                subject,
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -40,7 +58,7 @@ class ForumCardElement extends StatelessWidget {
 
               /// Description
               Text(
-                "Duzlu su ilə qarqara etmək bakteriyaları azaltmağa kömək edə bilər və boğaz ağrısını yüngülləşdirə bilər.",
+                content,
                 style: TextStyle(color: Colors.grey[700], height: 1.4),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
@@ -60,7 +78,7 @@ class ForumCardElement extends StatelessWidget {
                           size: 20,
                           color: Colors.deepPurple,
                         ),
-                        14
+                        0
                       ),
                       _iconButton(
                         HugeIcon(
@@ -68,15 +86,7 @@ class ForumCardElement extends StatelessWidget {
                           size: 20,
                           color: Colors.deepPurple,
                         ),
-                        20
-                      ),
-                      _iconButton(
-                        HugeIcon(
-                          icon: HugeIcons.strokeRoundedShare01,
-                          size: 20,
-                          color: Colors.deepPurple,
-                        ),
-                        6
+                        commentCount
                       ),
                     ],
                   ),
@@ -91,7 +101,9 @@ class ForumCardElement extends StatelessWidget {
                         vertical: 10,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigate to Forum Details (not implemented yet)
+                    },
                     label: const Text("Ətraflı"),
                     icon: const HugeIcon(
                       icon: HugeIcons.strokeRoundedArrowRight01,
@@ -122,8 +134,8 @@ class ForumCardElement extends StatelessWidget {
           child: Row(
             children: [
               icon,
-              SizedBox(width: 2,),
-              Text(count.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),)
+              const SizedBox(width: 2,),
+              Text(count.toString(), style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.deepPurple),)
             ],
           ),
         ),
